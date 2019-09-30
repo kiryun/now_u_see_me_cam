@@ -3,6 +3,7 @@ import numpy as np
 import cv2
 import os
 import time
+<<<<<<< HEAD
 from datetime import datetime
 import requests
 import urllib2
@@ -10,6 +11,8 @@ import urllib
 
 path_dir = './images/'
 url = 'http://203.252.91.45:3001/event/upload'
+=======
+>>>>>>> 5cf217353da03a43c35483ffd9a9e0c12e014dac
 
 print("[INFO] loading face detector...")
 protoPath = os.path.sep.join(["face_detection_model", "deploy.prototxt"])
@@ -18,6 +21,7 @@ modelPath = os.path.sep.join(["face_detection_model",
 detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 prevTime = 0
 cap = cv2.VideoCapture(0)
+<<<<<<< HEAD
 idx = 0
 flag = 0
 
@@ -28,6 +32,15 @@ while True:
 	(h, w) = frame.shape[:2]
 	imageBlob = cv2.dnn.blobFromImage(
 		cv2.resize(frame, (150, 150)), 1.0, (150, 150),
+=======
+while True:
+	curTime = time.time()
+	ret, frame = cap.read()
+	frame= cv2.resize(frame, dsize=(500,500),interpolation=cv2.INTER_AREA)
+	(h, w) = frame.shape[:2]
+	imageBlob = cv2.dnn.blobFromImage(
+		cv2.resize(frame, (300, 300)), 1.0, (300, 300),
+>>>>>>> 5cf217353da03a43c35483ffd9a9e0c12e014dac
 		(104.0, 177.0, 123.0), swapRB=False, crop=False)
 	detector.setInput(imageBlob)
 	detections = detector.forward()
@@ -43,6 +56,7 @@ while True:
 			(fH, fW) = face.shape[:2]
 			if fW < 20 or fH < 20:
 				continue
+<<<<<<< HEAD
 			#cv2.rectangle(frame, (startX, startY), (endX, endY), (0, 255, 0), 1)
 			now = datetime.now()
 			current_time = str(now.year)+"-"+\
@@ -55,10 +69,16 @@ while True:
 				flag = 1
 				idx=0
 			sec = curTime - prevTime
+=======
+			cv2.rectangle(frame, (startX, startY), (endX, endY), (0, 255, 0), 1)
+			cv2.imwrite('image.jpg',frame)
+        		sec = curTime - prevTime
+>>>>>>> 5cf217353da03a43c35483ffd9a9e0c12e014dac
 			prevTime = curTime
 			fps = 1/(sec)
 			str_fps = "FPS : %0.1f" % fps
 			print str_fps
+<<<<<<< HEAD
 	if flag==1:
 		filename_list = os.listdir(path_dir)
 		file_list = []
@@ -74,6 +94,8 @@ while True:
 		print(res)
 		flag = 0
 		
+=======
+>>>>>>> 5cf217353da03a43c35483ffd9a9e0c12e014dac
 #        cv2.putText(frame, str_fps, (0, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0))
 #	cv2.imshow("Image", frame)
 	key = cv2.waitKey(1) & 0xFF
