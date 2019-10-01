@@ -2,7 +2,7 @@ import requests
 import os
 
 path_dir = './test_img/'
-url = 'http://203.252.91.45:3001/event/upload'
+url = 'http://203.252.91.45:3000/event/upload'
 
 filename_list = os.listdir(path_dir) # 
 

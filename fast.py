@@ -12,7 +12,7 @@ import urllib
 #import logging
 #import datetime
 path_dir = './images/'
-url = 'http://203.252.91.45:3001/event/upload'
+url = 'http://203.252.91.45:3000/event/upload'
 # #test
 # res = requests.get('http://127.0.0.1:3000/users')
 # print(res)
